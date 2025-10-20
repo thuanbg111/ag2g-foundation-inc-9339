@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About — AG2G FOUNDATION INC.</title>
+<link rel="stylesheet" href="assets/styles.css"/>
+<link rel="icon" href="images/logo.png">
+<meta name="data-ein" content="873859339">
+<meta name="data-name" content="AG2G FOUNDATION INC.">
+<meta name="data-email" content="contact@ag2gfoundation.cfd">
+<meta name="data-phone" content="+15635516946">
+<meta name="data-address" content="2403 FORDHAM STREET
+PALO ALTO, CA 94303">
+<meta name="data-map" content="2403+FORDHAM+STREET%0APALO+ALTO%2C+CA+94303">
+</head>
+<body>
+
+<div class="topbar">
+  <strong>AG2G FOUNDATION INC.</strong>
+  <button class="toggle" aria-controls="sb" aria-expanded="false">☰</button>
+</div>
+
+<div class="app">
+  <aside class="sidebar" id="sb">
+    <div class="brand"><img src="images/logo.png" alt="AG2G FOUNDATION INC. logo"></div>
+    <span class="badge">501(c)(3) • EIN 873859339</span>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a class="active" href="about.html">About</a>
+      <a href="governance.html">Governance</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="contact">
+      <div><strong>Address</strong><br>2403 FORDHAM STREET
+PALO ALTO, CA 94303</div>
+      <div style="margin-top:.4rem"><strong>Email</strong> <a href="mailto:contact@ag2gfoundation.cfd">contact@ag2gfoundation.cfd</a></div>
+      <div><strong>Phone</strong> <a href="tel:+15635516946">+15635516946</a></div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="container section split">
+      <div>
+        <h1>About AG2G FOUNDATION INC.</h1>
+        <p><strong>AG2G FOUNDATION INC.</strong> is a U.S. charitable organization recognized as a <strong>501(c)(3)</strong>. EIN: <strong>873859339</strong>.</p>
+        <p>We design practical programs with measurable outcomes across housing, jobs, and essential relief, serving people with dignity and transparency.</p>
+        <ul class="small">
+          <li>No substantial part of our activities involves lobbying or political campaigning.</li>
+          <li>Assets are irrevocably dedicated to charitable and educational purposes.</li>
+          <li>Upon dissolution, remaining assets will be distributed to a similar 501(c)(3).</li>
+        </ul>
+      </div>
+      <figure class="figure"><img src="images/about.jpg" alt="About our mission"></figure>
+    </div>
+
+    <section class="section container grid-3">
+      <div class="card"><div class="card-body"><strong>Office</strong><p class="small">2403 FORDHAM STREET
+PALO ALTO, CA 94303</p></div></div>
+      <div class="card"><div class="card-body"><strong>Focus Areas</strong><p class="small">Housing • Jobs • Relief</p></div></div>
+      <div class="card"><div class="card-body"><strong>Contact</strong><p class="small"><a href="mailto:contact@ag2gfoundation.cfd">contact@ag2gfoundation.cfd</a><br><a href="tel:+15635516946">+15635516946</a></p></div></div>
+    </section>
+
+    <!-- Footer GIỮ NGUYÊN -->
+    <footer class="footer"><div class="container grid">
+      <div><img src="images/logo.png" alt="" style="width:160px;height:auto;margin-bottom:.5rem;">
+        <div class="small">© <span id="year"></span> AG2G FOUNDATION INC.</div>
+        <div class="small">California Nonprofit Public Benefit • 501(c)(3) • EIN 873859339</div></div>
+      <div><div class="small"><strong>Mission:</strong><br>We provide financial and social assistance to the homeless through the reclaiming and re-purposing of degraded land in America.</div></div>
+      <div><div class="small"><strong>Address:</strong><br>2403 FORDHAM STREET
+PALO ALTO, CA 94303<br>
+        <strong>Email:</strong> <a href="mailto:contact@ag2gfoundation.cfd">contact@ag2gfoundation.cfd</a><br><strong>Phone:</strong> <a href="tel:+15635516946">+15635516946</a></div></div>
+    </div></footer>
+  </main>
+</div>
+
+<script>
+  const t=document.querySelector('.toggle'), sb=document.getElementById('sb');
+  if(t&&sb){t.addEventListener('click',()=>{const s=getComputedStyle(sb).display!=='none'; sb.style.display=s?'none':'flex'; t.setAttribute('aria-expanded', s?'false':'true');});}
+  const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+</script>
+<script>
+/* ===== Per-site Brand Color (no new placeholders) =====
+   Deterministically derive color from EIN (fallback NAME). */
+(function(){
+  function getMeta(name){
+    const el=document.querySelector('meta[name="'+name+'"]');
+    return el? (el.content||'') : '';
+  }
+  function textHash(s){
+    let h=2166136261>>>0;
+    for(let i=0;i<s.length;i++){h^=s.charCodeAt(i); h=(h*16777619)>>>0;}
+    return h>>>0;
+  }
+  function colorFromKey(key){
+    const h = (key % 360);
+    const s = 55 + (key % 20);
+    const l = 46;
+    const brand        = `hsl(${h} ${s}% ${l}%)`;
+    const brandInk     = `hsl(${h} ${Math.min(95,s+10)}% ${Math.max(22,l-18)}%)`;
+    const soft         = `hsl(${h} ${Math.max(40, s-25)}% 95%)`;
+    return {brand, brandInk, soft};
+  }
+  let keyStr = (getMeta('data-ein')||'').replace(/\D+/g,'');
+  if(!keyStr) keyStr = getMeta('data-name')||location.hostname||'default';
+  const key = textHash(String(keyStr));
+  const {brand, brandInk, soft} = colorFromKey(key);
+  const root = document.documentElement;
+  root.style.setProperty('--brand', brand);
+  root.style.setProperty('--brand-ink', brandInk);
+  root.style.setProperty('--soft', soft);
+
+  const t=document.querySelector('.toggle'), sb=document.getElementById('sb');
+  if(t&&sb){
+    t.addEventListener('click',()=>{
+      const shown=getComputedStyle(sb).display!=='none';
+      sb.style.display= shown ? 'none' : 'flex';
+      t.setAttribute('aria-expanded', shown?'false':'true');
+    });
+  }
+  const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

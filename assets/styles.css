@@ -1,0 +1,106 @@
+:root{
+  --ink:#0f1a2b;         /* text */
+  --muted:#5a6780;
+  --paper:#ffffff;
+  --line:#e6ecfa;
+  --brand:#2b5fb8;       /* brand color: sẽ bị override bởi script theo EIN */
+  --brand-ink:#0f3d99;
+  --soft:#eaf1ff;
+  --radius:16px;
+  --shadow:0 10px 28px rgba(15,26,43,.08)
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.65
+}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block;border-radius:var(--radius)}
+
+/* === App layout with left sidebar === */
+.app{
+  display:grid;
+  grid-template-columns: 300px 1fr;
+  min-height:100svh;
+}
+.sidebar{
+  border-right:1px solid var(--line);
+  background:linear-gradient(180deg,#f6f9ff,#fff);
+  position:sticky; top:0; align-self:start; height:100svh;
+  display:flex; flex-direction:column; padding:1rem;
+}
+.brand{display:flex; align-items:center; gap:.8rem; margin-bottom:1rem}
+.brand img{width:164px;height:auto}
+.badge{display:inline-flex;gap:.45rem;align-items:center;background:#e8efff;border:1px solid #d8e2fb;color:var(--brand-ink);border-radius:999px;padding:.28rem .6rem;font-size:.88rem;font-weight:700}
+.nav{display:grid; gap:.35rem; margin: .6rem 0 1rem}
+.nav a{padding:.55rem .7rem;border-radius:12px}
+.nav a.active, .nav a:hover{background:var(--soft); text-decoration:none}
+.sidebar .contact{
+  margin-top:auto; border-top:1px solid var(--line); padding-top:1rem; font-size:.95rem; color:var(--muted)
+}
+
+/* mobile sidebar toggle */
+.topbar{
+  display:none; position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line);
+  padding:.6rem .9rem; z-index:5
+}
+.toggle{font-size:1.25rem; background:#fff; border:1px solid var(--line); border-radius:10px; padding:.35rem .6rem}
+
+/* ===== Content area (FIX footer “chơi vơi”) ===== */
+main{
+  display:flex;              /* NEW: flex column để đẩy footer xuống đáy */
+  flex-direction:column;
+  min-height:100svh;         /* NEW: cao tối thiểu = viewport */
+  padding:1.25rem 1.5rem;
+}
+
+.container{width:min(980px,95%); margin-inline:auto}
+.section{padding:1.25rem 0}
+.split{display:grid;grid-template-columns:1fr;gap:1rem;align-items:center}
+.split.reverse{grid-auto-flow:dense}
+.grid-3{display:grid;grid-template-columns:1fr;gap:1rem}
+
+.card{background:#fff;border:1px solid #e8eefb;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.card-body{padding:1rem}
+.figure{overflow:hidden;border-radius:var(--radius)}
+
+.hero{background:linear-gradient(180deg,#f6f9ff,#ffffff);border:1px solid var(--line);border-radius:20px;padding:1.2rem}
+.hero h1{margin:.2rem 0 0 0}
+.lead{max-width:65ch}
+
+/* forms */
+.form{display:grid;grid-template-columns:1fr;gap:.8rem}
+label{display:grid;gap:.35rem;font-weight:600}
+input,textarea{width:100%;padding:.7rem .8rem;border:1px solid #d8e2fb;border-radius:10px}
+.btn{display:inline-block;padding:.7rem 1rem;border:1px solid #d8e2fb;border-radius:12px;background:#fff}
+.btn:hover{box-shadow:var(--shadow);text-decoration:none}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+
+.map-embed iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:20px;box-shadow:var(--shadow)}
+.small{font-size:.92rem;color:var(--muted)}
+.upper-strong{font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+
+/* ===== Footer: dính đáy khi nội dung ít ===== */
+.footer{
+  border-top:1px solid var(--line);
+  background:#f8faff;
+  margin-top:auto;           /* NEW: đẩy footer xuống đáy */
+}
+.footer .grid{display:grid;grid-template-columns:1fr;gap:.8rem;padding:1.2rem 0}
+
+/* Responsive */
+@media(min-width:760px){
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .split{grid-template-columns:1.15fr 1fr}
+  .split.reverse .image{order:-1}
+  .footer .grid{grid-template-columns:1.2fr 1fr 1fr}
+}
+@media(max-width:920px){
+  .app{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .topbar{display:flex; align-items:center; justify-content:space-between}
+}
